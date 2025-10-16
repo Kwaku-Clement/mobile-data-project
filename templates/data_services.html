@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Data | RazilHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9eff5;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0b132b, #1c2541);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            overflow: visible;
+        }
+
+        .network-section {
+            border: 2px solid #e1e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .network-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .network-logo {
+            max-width: 90px;
+            max-height: 90px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 15px auto;
+            border-radius: 8px;
+        }
+
+        .network-section h2 {
+            margin: 15px 0 5px 0;
+            color: #0b132b;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .network-form {
+            margin-top: 20px;
+        }
+
+        .network-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .network-form input,
+        .network-form select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d9e6;
+            margin-bottom: 18px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .network-form input:focus,
+        .network-form select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+
+        .network-form button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .network-form button:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e8f0;
+        }
+
+        .back-link a {
+            color: #1c2541;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Specific network styling for better distinction */
+        .network-section:nth-child(1) {
+            border-left: 4px solid #ffcc00; /* MTN Yellow */
+        }
+
+        .network-section:nth-child(2) {
+            border-left: 4px solid #e6007e; /* Telecel Pink */
+        }
+
+        .network-section:nth-child(3) {
+            border-left: 4px solid #ed1c24; /* AirtelTigo Red */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+
+            .network-section {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+            .network-logo {
+                max-width: 70px;
+                max-height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- MTN Section -->
+    <div class="network-section">
+        <img src="{{ url_for('static', filename='mtn.png') }}" alt="MTN Logo" class="network-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0iI0ZGRkNDMCIvPgo8dGV4dCB4PSI0MCIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TVROPC90ZXh0Pgo8L3N2Zz4K'">
+        <h2>MTN Data Bundles</h2>
+        <form class="network-form" action="{{ url_for('buy_data', network='MTN', price=0) }}" method="POST">
+            <label for="mtn_number">Recipient Number</label>
+            <input type="text" id="mtn_number" name="recipient" placeholder="e.g. 0541234567" required>
+
+            <label for="mtn_package">Select Package</label>
+            <select id="mtn_package" name="price" required>
+                <option value="">-- Choose a package --</option>
+                <option value="10">1GB – GHS 10</option>
+                <option value="18">2GB – GHS 18</option>
+                <option value="40">5GB – GHS 40</option>
+            </select>
+
+            <button type="submit">Buy Now</button>
+        </form>
+    </div>
+
+    <!-- Telecel Section -->
+    <div class="network-section">
+        <img src="{{ url_for('static', filename='telecel.png') }}" alt="Telecel Logo" class="network-logo">
+        <h2>Telecel Data Bundles</h2>
+        <form class="network-form" action="{{ url_for('buy_data', network='Telecel', price=0) }}" method="POST">
+            <label for="telecel_number">Recipient Number</label>
+            <input type="text" id="telecel_number" name="recipient" placeholder="e.g. 0201234567" required>
+
+            <label for="telecel_package">Select Package</label>
+            <select id="telecel_package" name="price" required>
+                <option value="">-- Choose a package --</option>
+                <option value="9">1GB – GHS 9</option>
+                <option value="25">3GB – GHS 25</option>
+                <option value="40">5GB – GHS 40</option>
+            </select>
+
+            <button type="submit">Buy Now</button>
+        </form>
+    </div>
+
+    <!-- AirtelTigo Section -->
+    <div class="network-section">
+        <img src="{{ url_for('static', filename='airteltigo.png') }}" alt="AirtelTigo Logo" class="network-logo">
+        <h2>AirtelTigo Data Bundles</h2>
+        <form class="network-form" action="{{ url_for('buy_data', network='AirtelTigo', price=0) }}" method="POST">
+            <label for="tigo_number">Recipient Number</label>
+            <input type="text" id="tigo_number" name="recipient" placeholder="e.g. 0571234567" required>
+
+            <label for="tigo_package">Select Package</label>
+            <select id="tigo_package" name="price" required>
+                <option value="">-- Choose a package --</option>
+                <option value="8">1GB – GHS 8</option>
+                <option value="22">3GB – GHS 22</option>
+                <option value="35">5GB – GHS 35</option>
+            </select>
+
+            <button type="submit">Buy Now</button>
+        </form>
+    </div>
+
+    <div class="back-link">
+        <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+    </div>
+
+</div>
+
+</body>
+</html>

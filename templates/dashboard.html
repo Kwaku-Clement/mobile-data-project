@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RazilHub Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url("{{ url_for('static', filename='images/dashboard.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER / TOP BAR ===== */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #0a0f2c, #001f3f, #003366);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid rgba(0, 230, 118, 0.3);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: #00e5ff;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        }
+
+        header p {
+            color: #90caf9;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* ===== WALLET ===== */
+        .wallet {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px 16px;
+            border-radius: 12px;
+            text-align: right;
+            min-width: 190px;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+        }
+
+        .wallet h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #00e5ff;
+        }
+
+        .wallet p {
+            font-size: 1.1rem;
+            margin: 5px 0 10px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .wallet form {
+            display: flex;
+            justify-content: flex-end;
+            gap: 6px;
+            margin-top: 3px;
+        }
+
+        .wallet input {
+            width: 70px;
+            border: none;
+            border-radius: 6px;
+            padding: 5px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .wallet button {
+            background: linear-gradient(90deg, #00e5ff, #00bfa5);
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .wallet button:hover {
+            background: linear-gradient(90deg, #00bfa5, #00e5ff);
+        }
+
+        /* ===== MAIN SECTION ===== */
+        main {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 60px 20px;
+        }
+
+        .service-card {
+            background: rgba(0, 0, 0, 0.55);
+            padding: 30px 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 240px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .service-card h2 {
+            color: #00e5ff;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #d0d0d0;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00e5ff, #00bfa5);
+            color: #000;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #00bfa5, #00e5ff);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            color: #90caf9;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div>
+            <h1>🚀 RazilHub</h1>
+            <p>Your trusted online service hub</p>
+        </div>
+
+        <div class="wallet">
+            <h3>💳 Wallet Balance</h3>
+            <p><strong>GHS {{ balance }}</strong></p>
+
+            <form action="{{ url_for('deposit') }}" method="post">
+                <input type="number" name="amount" step="0.01" placeholder="Amt">
+                <button type="submit">Deposit</button>
+            </form>
+
+            <form action="{{ url_for('withdraw') }}" method="post">
+                <input type="number" name="amount" step="0.01" placeholder="Amt">
+                <button type="submit">Withdraw</button>
+            </form>
+        </div>
+    </header>
+
+    <!-- ===== MAIN DASHBOARD ===== -->
+    <main>
+        <div class="service-card">
+            <h2>📱 Mobile Data</h2>
+            <p>Buy affordable internet data bundles instantly.</p>
+            <a href="{{ url_for('data') }}" class="btn">View Packages</a>
+            </a>
+        </div>
+
+        <div class="service-card">
+            <h2>🚗 Car Wash</h2>
+            <p>Book a quick and quality car wash near you.</p>
+            <a href="{{ url_for('car_wash') }}" class="btn">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <h2>🚚 Delivery</h2>
+            <p>Send and receive parcels fast and reliably.</p>
+            <a href="{{ url_for('delivery') }}" class="btn">Start Delivery</a>
+        </div>
+
+        <div class="service-card">
+            <h2>🍔 Food</h2>
+            <p>Order delicious meals from top restaurants.</p>
+            <a href="{{ url_for('food') }}" class="btn">Order Now</a>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        &copy; 2025 RazilHub. All Rights Reserved.
+    </footer>
+</body>
+</html>

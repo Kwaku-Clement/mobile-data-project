@@ -1,0 +1,95 @@
+/* Full background setup */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url("bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Floating card container */
+.container {
+    background: rgba(255, 255, 255, 0.15); /* semi-transparent white */
+    backdrop-filter: blur(10px); /* frosted glass effect */
+    border-radius: 16px;
+    padding: 35px 25px;
+    width: 380px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+/* Header text */
+header h1 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+header p {
+    color: #e0e0e0;
+    font-size: 0.95em;
+}
+
+/* Labels and input fields */
+label {
+    display: block;
+    text-align: left;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 18px;
+    font-size: 1em;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #005fcc;
+}
+
+/* Message area */
+ul.messages {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+ul.messages li {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Footer */
+footer {
+    margin-top: 25px;
+    font-size: 0.8em;
+    color: #ddd;
+}
